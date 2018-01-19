@@ -18,16 +18,22 @@ public class EmployeeController {
 	private EmployeeService employeeService;
 	
 	@RequestMapping("/employees")
-	public  List<Employee> getAllEmployees(){
-		
+	public List<Employee> getAllEmployees() {
 		return employeeService.getAllEmployees();
 	}
+	
 	@RequestMapping("/employees/{id}")
 	public Employee getEmployee(@PathVariable String id) {
 		return employeeService.getEmployee(id);
 	}
-	@RequestMapping(method=RequestMethod.POST,value="/employees")
+	
+	@RequestMapping(method=RequestMethod.POST, value="/employees")
 	public void addEmployee(@RequestBody Employee employee) {
 		employeeService.addEmployee(employee);
+	}
+	@RequestMapping(method= RequestMethod.DELETE, value="/employees/del/{id}")
+	public void delEmployee(@PathVariable String id) {
+		employeeService.delEmployee(id);
+		
 	}
 }
